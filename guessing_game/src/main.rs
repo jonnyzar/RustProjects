@@ -9,8 +9,6 @@ fn main() {
 
     let secret_number = rand::thread_rng().gen_range(1..=100);
 
-    println!("You secret number is {secret_number}");
-
     loop { //infinite loop
         println!("Input your guess");
 
@@ -26,7 +24,10 @@ fn main() {
         // let guess = guess.trim().parse::<u32>(); //type casting
         // trim() eliminates whitespaces
         // parse() with turbofish ... wont work
-        let guess: u32 = guess.trim().parse().expect("Please type a number!");
+        let guess: u32 = match guess.trim().parse(){
+            Ok(num) => num,
+            Err(_) => continue,
+        };
 
 
         match guess.cmp(&secret_number) {
