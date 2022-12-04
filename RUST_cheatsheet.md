@@ -38,3 +38,42 @@ cargo update
 cargo doc --open
 
 ```
+
+# Variables
+
+## Scalar Types
+
+Basic single type variables.
+
+* integer
+
+signed vvalues
+`-(2^(n - 1)) to 2^(n - 1) - 1`
+
+unsinged
+
+`0 to 2^n - 1`
+
+```
+8-bit	i8	u8
+16-bit	i16	u16
+32-bit	i32	u32
+64-bit	i64	u64
+128-bit	i128	u128
+arch	isize	usize
+```
+
+* floating-point
+* Booleans
+* characters
+
+Rust’s char type is four bytes in size and represents a Unicode Scalar Value
+
+## Compound Type
+
+Variable grouping multiple values of multiple types together.
+
+### Tuple
+
+Fixed length once declared
+

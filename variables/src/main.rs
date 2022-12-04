@@ -7,6 +7,14 @@ fn main() {
     //mutable 
     let mut x = 5;
     println!("mutable x is {x}");
+
+     //mutable max int
+     let mut k = u32::MAX;
+     println!("mutable k is {k}");
+
+     k -= 1;
+     println!("mutable k after '-1' {k}");
+     // if you put +1 you see that overflow here is impossible
     
     x = 6;
     println!("new value assigned to x is {x}");
@@ -35,5 +43,37 @@ fn main() {
 
     println!("The final value of x is: {x}");
 
+
+    //conver String to int
+
+
+    let guess: u32 = "42".parse().expect("Not a number!");
+
+    println!("guess from string is {guess}");
+
+    let heart_eyed_cat = '😻';
+
+    println!("{heart_eyed_cat}");
+
+    let some_tuple: (i32, f64, u8) = (50, 56.3, 23);
+
+
+    //destructure tuple
+
+    let (x,y,z) = some_tuple;
+
+    println!("tup is {x}, {y}, {z}");
+
+    //accessing values one by one
+
+    let first = some_tuple.0;
+    let second = some_tuple.1;
+    let third = some_tuple.2;
+
+    println!("tup is {first}, {second}, {third}");
+
+    let _unit_tup = ();
+
+/************************* ARRAY TYPE ***************************/
 
 }
