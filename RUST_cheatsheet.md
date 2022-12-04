@@ -77,3 +77,19 @@ Variable grouping multiple values of multiple types together.
 
 Fixed length once declared
 
+### Array
+
+* Fixed length, all variables of same type
+* An array is a single chunk of memory of a known, fixed size that can be allocated on the stack
+* out-of-bounds index access in rust is impossbile... it wont compile and panic
+
+```
+fn main() {
+    let a = [1, 2, 3, 4, 5];
+}
+```
+
+### Vector
+
+Like array but may grow and shrink in size
+

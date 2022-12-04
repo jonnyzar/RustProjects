@@ -76,4 +76,23 @@ fn main() {
 
 /************************* ARRAY TYPE ***************************/
 
+let some_little_array = [1,2,3,4,5];
+
+// or like so
+
+let type_array: [i32;5] = [11,22,33,44,55];
+
+// define array with same values of elements
+
+let zero_point = [0;3]; // [0,0,0]
+
+//accessing array elements
+
+let first = type_array[0];
+
+println!("{first}");
+
+
+
+
 }
