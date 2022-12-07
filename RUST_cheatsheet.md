@@ -1,6 +1,7 @@
 # Intro
 
-All need to know and handy commands are going to be written down here.
+* All need to know and handy commands are going to be written down here.
+* Only major interesting and different stuff than used by C and C++ going to be written here
 
 # Updates
 * Update rust
@@ -92,4 +93,21 @@ fn main() {
 ### Vector
 
 Like array but may grow and shrink in size
+
+# Control Statements
+
+## if
+
+* always provide bool for evaluation
+
+## loop
+
+* infinite loop
+* Loop labels must begin with a single quote: `'counter:loop{...}`
+
+## for 
+
+* iteration through collection and other iterables like in python :)
+* use range: `for number in (1..4){...}` where 4 is excluded
+
 
