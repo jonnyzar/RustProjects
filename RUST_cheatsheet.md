@@ -110,4 +110,40 @@ Like array but may grow and shrink in size
 * iteration through collection and other iterables like in python :)
 * use range: `for number in (1..4){...}` where 4 is excluded
 
+# Ownership concept
+
+* memory management in RUST
+* Each value in Rust has an owner.
+* There can only be one owner at a time.
+* When the owner goes out of scope, the value will be dropped
+
+```
+For normal known literals we can allocate memmory and store in binary
+```
+
+```
+Unfortunately, we can’t put a blob of memory into the binary for each piece of text whose size is unknown at compile time and whose size might change while running the program.
+```
+
+* The memory must be requested from the memory allocator at runtime
+
+`String::from` requests memory at runtime.
+
+* We need a way of returning this memory to the allocator when we’re done with our String.
+
+In Rust memory is free when variable gets out of scope.
+
+```
+ {
+        let s = String::from("hello"); // s is valid now
+
+        // do stuff with s
+    }
+    // this scope is now over, and s is no
+    //longer valid
+```
+
+* Rust frees memory automatically if it points to same location at heap, so only shallow copy survives
+
+* to make a deep clone use `clone()`
 
