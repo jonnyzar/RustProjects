@@ -10,7 +10,7 @@ fn main() {
 
     //mutable string
 
-    let mut s = String::from("hello");
+    let mut s = String::from("hello"); // s alive
 
     s.push_str(", world!"); // append to string
 
@@ -21,7 +21,7 @@ fn main() {
     println!("{}", string1); //unmutable string
 
 
-    let _s_nok = s;
+    let _s_nok = s; // s dead
 
     // println!("{}", s); // no more valide since value moved
     // from s to _s_nok
@@ -35,4 +35,53 @@ fn main() {
 
     println!("{} and clone {}", s_2, s_2_deep);
 
+    //Ownership and functions
+
+    let test_string = String::from("test_string alive");
+
+    consume_test_string(test_string);
+
+    //println!("{}", test_string); //test_string dead due to borrowing
+
+
+    let xxx = 555;
+
+    use_xxx_fixed_variable(xxx);
+
+    // let xxx = 555; // can be redefined for more clarity
+
+    println!("{xxx}"); //fixed variable still alive
+
+    //return and ownership
+
+    let given_ownership = some_giver();
+
+    println!("{}", given_ownership);
+
+    let provider =  String::from("I provided");
+
+    let taker = provide (provider);
+
+    println!("{}", taker);
+
+}
+
+fn provide (s: String) -> String {
+    let out = s;
+    out
+}
+
+fn some_giver() -> String {
+
+    let s = String::from("Hello given");
+
+    s // return value
+}
+
+fn consume_test_string (some_string: String){
+    println!("{}", some_string);
+}
+
+fn use_xxx_fixed_variable (x: i32){
+    println!("{x}");
 }

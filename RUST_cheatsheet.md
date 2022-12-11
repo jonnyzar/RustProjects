@@ -145,5 +145,15 @@ In Rust memory is free when variable gets out of scope.
 
 * Rust frees memory automatically if it points to same location at heap, so only shallow copy survives
 
-* to make a deep clone use `clone()`
+* to make a deep clone use `clone()` but for integers and fixed types it is not necessary
+
+```
+# Implemeted Copy Trait
+
+All the integer types, such as u32.
+The Boolean type, bool, with values true and false.
+All the floating point types, such as f64.
+The character type, char.
+Tuples, if they only contain types that also implement Copy. For example, (i32, i32) implements Copy, but (i32, String) does not.
+```
 
