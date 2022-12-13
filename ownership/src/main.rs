@@ -64,6 +64,17 @@ fn main() {
 
     println!("{}", taker);
 
+    let (x,y) = return_tuple(taker);
+
+    println!("{}, {}", x,y);
+
+}
+
+fn return_tuple (s: String) -> (usize, usize){
+    let x = s.len();
+    let y = x + 1;
+
+    (x,y)
 }
 
 fn provide (s: String) -> String {
