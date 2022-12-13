@@ -60,7 +60,7 @@ fn main() {
 
     let provider =  String::from("I provided");
 
-    let taker = provide (provider);
+    let taker = provide(provider);
 
     println!("{}", taker);
 
