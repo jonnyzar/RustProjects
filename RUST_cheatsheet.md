@@ -162,3 +162,7 @@ Tuples, if they only contain types that also implement Copy. For example, (i32, 
 ```
 A reference is like a pointer in that it’s an address we can follow to access the data stored at that address.
 ```
+
+* A reference: &variable
+* dereference: *variable
+* the value is not droped when the refence is out of scope
