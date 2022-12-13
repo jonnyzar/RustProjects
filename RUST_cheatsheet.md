@@ -157,3 +157,8 @@ The character type, char.
 Tuples, if they only contain types that also implement Copy. For example, (i32, i32) implements Copy, but (i32, String) does not.
 ```
 
+# Refernces
+
+```
+A reference is like a pointer in that it’s an address we can follow to access the data stored at that address.
+```
