@@ -3,11 +3,12 @@
 * All need to know and handy commands are going to be written down here.
 * Only major interesting and different stuff than used by C and C++ going to be written here
 
-# Updates
+## Updates
+
 * Update rust
 `rustup update`
 
-# Build Essentials
+## Build Essentials
 
 * Simple compile
 `rustc main.rs`
@@ -16,7 +17,7 @@
 
 Cargo is a packet manager for rust with plenty of helpful functionalities as you may see below.
 
-```
+```rust
 # create new project 
 cargo new
 
@@ -56,12 +57,12 @@ unsinged
 `0 to 2^n - 1`
 
 ```
-8-bit	i8	u8
-16-bit	i16	u16
-32-bit	i32	u32
-64-bit	i64	u64
-128-bit	i128	u128
-arch	isize	usize
+8-bit i8 u8
+16-bit i16 u16
+32-bit i32 u32
+64-bit i64 u64
+128-bit i128 u128
+arch isize usize
 ```
 
 * floating-point
@@ -105,7 +106,7 @@ Like array but may grow and shrink in size
 * infinite loop
 * Loop labels must begin with a single quote: `'counter:loop{...}`
 
-## for 
+## for
 
 * iteration through collection and other iterables like in python :)
 * use range: `for number in (1..4){...}` where 4 is excluded
@@ -147,7 +148,7 @@ In Rust memory is free when variable gets out of scope.
 
 * to make a deep clone use `clone()` but for integers and fixed types it is not necessary
 
-```
+```text
 # Implemeted Copy Trait
 
 All the integer types, such as u32.
@@ -157,12 +158,29 @@ The character type, char.
 Tuples, if they only contain types that also implement Copy. For example, (i32, i32) implements Copy, but (i32, String) does not.
 ```
 
-# Refernces
+# References
 
-```
+```text
 A reference is like a pointer in that it’s an address we can follow to access the data stored at that address.
 ```
 
 * A reference: &variable
 * dereference: *variable
 * the value is not droped when the refence is out of scope
+* to modify a reference it has to be mutable
+
+```rust
+#create mutable variable
+
+let mut a = 5;
+
+# define function accepting mutable variables
+
+fn func_xyz(x: &mut i32) {
+    ...}
+
+#pass reference to function
+
+func_xyz(&a);
+
+```

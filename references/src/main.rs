@@ -6,6 +6,15 @@ fn main() {
 
     println!("{}", len);
 
+    let mut s_change = String::from("hi");
+
+    change(&mut s_change);
+
+    println!("{s_change}");
+}
+
+fn change (s: &mut String) {
+    s.push_str(" and Bye!");
 }
 
 fn calc_length(s: &String) -> usize { //func accepts some reference to a string
