@@ -32,7 +32,26 @@ fn main() {
 
     println!("{ref_yyy}");
 
+/*
+
+Dangling References
+
+*/
+
+    let dangle = creating_dangling();
+
+
 }
+
+//DO NOT USE
+fn creating_dangling() -> &String{
+    //this function is false and going to dangle
+
+    let s = String::from("Hello, I dangle!");
+
+    &s
+}
+
 
 fn change (s: &mut String) {
     s.push_str(" and Bye!");
