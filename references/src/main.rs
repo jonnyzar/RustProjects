@@ -38,20 +38,78 @@ Dangling References
 
 */
 
-    let dangle = creating_dangling();
+  //  let dangle = creating_dangling();
 
+/*
+
+Slice
+
+*/
+
+/* Problem: find first word in the string before space and count number of letters in it*/
+
+let mut hello = String::from("Helloo Worlds!");
+
+let word = first_word(&hello);
+
+println!("{word}");
+
+
+hello.clear();
+
+// BUT after hello is cleared word is there without use and wastes ressources
+
+/*  SOLUTION: String slices  */
+
+let slice_str = String::from("Hello String Slice");
+
+let slice = &slice_str[0..10]; //start from zero to second element
+
+println!("{slice}");
+
+first_word_opt(&hello);
 
 }
 
+fn first_word_opt (s: &str) -> &str { //str string slice and string! better
+
+    let bytes = s.as_bytes();
+
+    for (i, &item) in bytes.iter().enumerate(){
+        if item == b' ' {
+            return &s[..i];
+        }
+    }
+
+    return &s[..];
+
+}
+
+
+fn first_word(s: &String) -> usize {
+
+    let bytes = s.as_bytes(); // represent string as bytes array
+
+    for (i, &item) in bytes.iter().enumerate(){ //enumerate returns tuple (index, &element)
+        if item == b' ' {
+            return i;
+        }
+    }
+
+    s.len()
+}
+
+
+/*
 //DO NOT USE
-fn creating_dangling() -> &String{
+fn creating_dangling() -> &String {
     //this function is false and going to dangle
 
     let s = String::from("Hello, I dangle!");
 
     &s
 }
-
+*/
 
 fn change (s: &mut String) {
     s.push_str(" and Bye!");

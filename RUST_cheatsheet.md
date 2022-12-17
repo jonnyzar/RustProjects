@@ -184,3 +184,8 @@ fn func_xyz(x: &mut i32) {
 func_xyz(&a);
 
 ```
+
+## Slices
+
+* string slice is a reference to a part of a string `let str = &s[starting_index..ending_index];`
+* type for string slice: `&str`
