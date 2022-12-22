@@ -3,15 +3,8 @@
 * All need to know and handy commands are going to be written down here.
 * Only major interesting and different stuff than used by C and C++ going to be written here
 
-## Updates
-
 * Update rust
 `rustup update`
-
-## Build Essentials
-
-* Simple compile
-`rustc main.rs`
 
 ## Using cargo
 
@@ -41,9 +34,9 @@ cargo doc --open
 
 ```
 
-# Variables
+## Variables
 
-## Scalar Types
+### Scalar Types
 
 Basic single type variables.
 
@@ -56,7 +49,7 @@ unsinged
 
 `0 to 2^n - 1`
 
-```
+```rust
 8-bit i8 u8
 16-bit i16 u16
 32-bit i32 u32
@@ -71,13 +64,17 @@ arch isize usize
 
 Rust’s char type is four bytes in size and represents a Unicode Scalar Value
 
-## Compound Type
+### Compound Type
 
 Variable grouping multiple values of multiple types together.
 
 ### Tuple
 
-Fixed length once declared
+Fixed length once declared and can contain various types
+
+```rust
+    let tup: (i32, f64, u8) = (500, 6.4, 1);
+```
 
 ### Array
 
@@ -85,44 +82,118 @@ Fixed length once declared
 * An array is a single chunk of memory of a known, fixed size that can be allocated on the stack
 * out-of-bounds index access in rust is impossbile... it wont compile and panic
 
-```
+```rust
+//Don’t have to rely on the order of the data to specify or access the values of an instance
 fn main() {
-    let a = [1, 2, 3, 4, 5];
+     let tup: (i32, f64, u8) = (500, 6.4, 1);
+
+    let tup = (500, 6.4, 1);
+
+    let (x, y, z) = tup;
 }
 ```
+
 
 ### Vector
 
 Like array but may grow and shrink in size
 
-# Control Statements
+```rust 
+tbd
+```
 
-## if
+### Structs
+
+```rust
+
+struct User {
+    active: bool,
+    username: String,
+    email: String,
+    sign_in_count: u64,
+}
+
+ let mut user1 = User {
+        email: String::from("someone@example.com"),
+        username: String::from("someusername123"),
+        active: true,
+        sign_in_count: 1,
+    };
+```
+
+* Use init shorthand to assign struct values in functio
+
+```rust
+
+fn assign_data (username: String, email: String) -> User {
+
+    User {
+        username,
+        email,
+        active: true,
+        sign_in_count: 0,
+    }
+
+}
+
+```
+
+#### Methods
+
+Within struct context we can define methods.
+
+
+* struct update syntax
+
+```rust
+# take values over from user1 and just change email
+let user2 = User {
+    email: String::from("ok@ok.com"),
+    ..user1
+};
+// but user1 is no longer usable after this email string was moved
+```
+
+* unit like structs can be used when no name of elements is needed
+
+```rust
+struct Color (i32,i32,i32);
+struct Point (i32,i32,i32);
+
+fn main(){
+    let black = Color(0,0,0);
+    let origin = Point(0,0,0);
+}
+```
+
+## Control Statements
+
+### if
 
 * always provide bool for evaluation
 
-## loop
+### loop
 
 * infinite loop
 * Loop labels must begin with a single quote: `'counter:loop{...}`
 
-## for
+### for
 
 * iteration through collection and other iterables like in python :)
 * use range: `for number in (1..4){...}` where 4 is excluded
 
-# Ownership concept
+## Ownership concept
 
 * memory management in RUST
 * Each value in Rust has an owner.
 * There can only be one owner at a time.
 * When the owner goes out of scope, the value will be dropped
 
-```
+```text
 For normal known literals we can allocate memmory and store in binary
 ```
 
-```
+```text
 Unfortunately, we can’t put a blob of memory into the binary for each piece of text whose size is unknown at compile time and whose size might change while running the program.
 ```
 
@@ -134,7 +205,7 @@ Unfortunately, we can’t put a blob of memory into the binary for each piece of
 
 In Rust memory is free when variable gets out of scope.
 
-```
+```rust
  {
         let s = String::from("hello"); // s is valid now
 
@@ -158,7 +229,7 @@ The character type, char.
 Tuples, if they only contain types that also implement Copy. For example, (i32, i32) implements Copy, but (i32, String) does not.
 ```
 
-# References
+### References
 
 ```text
 A reference is like a pointer in that it’s an address we can follow to access the data stored at that address.
@@ -185,7 +256,7 @@ func_xyz(&a);
 
 ```
 
-## Slices
+### Slices
 
 * string slice is a reference to a part of a string `let str = &s[starting_index..ending_index];`
 * type for string slice: `&str`
