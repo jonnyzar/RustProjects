@@ -138,10 +138,6 @@ fn assign_data (username: String, email: String) -> User {
 
 ```
 
-#### Methods
-
-Within struct context we can define methods.
-
 
 * struct update syntax
 
@@ -165,6 +161,28 @@ fn main(){
     let origin = Point(0,0,0);
 }
 ```
+
+#### Methods 
+
+* Within struct methods can be implemented
+
+```rust
+struct Car{
+    position: i32,
+    color: (i32,i32,i32),
+}
+
+impl Car{
+    fn color_red (&self) -> bool {
+    //implemnting Getter-Method to return value of the field
+        self.color.0 == 255
+    }
+}
+
+
+```
+
+
 
 ## Control Statements
 
