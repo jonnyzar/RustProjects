@@ -1,3 +1,30 @@
+fn main() {
+    println!("Hello, world!");
+
+    let resp: bool = if_func(30);
+
+    println!("Res is {resp}");
+
+    let out: i32 = doing_loop();
+
+    println!("{out}");
+
+    doing_while();
+    doing_for();
+    using_range();
+
+    anonymous_loop(11);
+}
+
+fn anonymous_loop (max_iter: i32) {
+    let mut i: i32 = 1;
+
+    for _ in 0..max_iter {
+        println!("{}",i);
+        i += 1;
+    }
+}
+
 fn if_func (number: i32) -> bool {
     
     // With "if" you must be explicit 
@@ -59,20 +86,4 @@ fn using_range (){
 }
 
 
-
-fn main() {
-    println!("Hello, world!");
-
-    let resp: bool = if_func(30);
-
-    println!("Res is {resp}");
-
-    let out: i32 = doing_loop();
-
-    println!("{out}");
-
-    doing_while();
-    doing_for();
-    using_range();
-}
 
