@@ -23,7 +23,14 @@ fn main() {
     fill_arr(&mut sample_arr);
 
     print_arr(&sample_arr);
+
+    // so array can be still changed
+    sample_arr[1] = 1000;
+
+    print_arr(&sample_arr);
+
 }
+
 
 fn fill_arr (arr: &mut [i32]) {
 

@@ -46,9 +46,28 @@ impl Rectangle{
     }
 }
 
+struct Person {
+    name: String,
+    age: u8,
+}
 
+impl Person{
+    fn new (name: String, age: u8) -> Person {
+        Person{
+            name,
+            age,
+        }
+    }
+}
 
 fn main() {
+
+    //short hand init and assignment via method
+    let mut man = Person::new("Bob".to_string(), 15);
+
+    println!("Name: {} and age is {}", man.name, man.age);
+
+
     // A tuple with a bunch of different types
     let long_tuple = (1u8, 2u16, 3u32, 4u64,
                       -1i8, -2i16, -3i32, -4i64,
