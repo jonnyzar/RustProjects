@@ -1,3 +1,6 @@
+#[allow(dead_code)]
+#[allow(non_snake_case)]
+
 use std::fmt;
 
 // Tuples can be used as function arguments and as return values
@@ -26,6 +29,22 @@ impl fmt::Display for Matrix {
         Matrix(input.0, input.2, input.1, input.3)
 
     }
+
+
+
+struct Rectangle {
+    // A rectangle can be specified by where the top left and bottom right
+    // corners are in space.
+    len_a: f32,
+    len_b: f32,
+}
+
+impl Rectangle{
+
+    fn rect_area (&self) -> f32 {
+        self.len_a * self.len_b
+    }
+}
 
 
 
@@ -72,5 +91,11 @@ fn main() {
     println!("{}", matrix);
 
     println!("Transpose:\n{}", transpose(matrix));
+
+    let littel_rec : Rectangle = Rectangle {len_a : 5.5, len_b: 1.2};
+
+    let area = littel_rec.rect_area();
+
+    println!("Area of rect is {}", area);
 
 }

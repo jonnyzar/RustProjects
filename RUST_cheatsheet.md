@@ -76,16 +76,10 @@ Fixed length once declared and can contain various types
     let tup: (i32, f64, u8) = (500, 6.4, 1);
 ```
 
-### Array
-
-* Fixed length, all variables of same type
-* An array is a single chunk of memory of a known, fixed size that can be allocated on the stack
-* out-of-bounds index access in rust is impossbile... it wont compile and panic
-
 ```rust
-//Don’t have to rely on the order of the data to specify or access the values of an instance
+//specify or access the values of a tuple instance
 fn main() {
-     let tup: (i32, f64, u8) = (500, 6.4, 1);
+    let tup: (i32, f64, u8) = (500, 6.4, 1);
 
     let tup = (500, 6.4, 1);
 
@@ -93,13 +87,22 @@ fn main() {
 }
 ```
 
+### Array
+
+* Fixed length, all variables of same type
+* An array is a single chunk of memory of a known, fixed size that can be allocated on the stack
+* out-of-bounds index access in rust is impossbile... it wont compile and panic
+
+Array signature is fixed `[T; length]`: `T` is type of each element, `length` is their length.
+
+### Slice
 
 ### Vector
 
 Like array but may grow and shrink in size
 
-```rust 
-tbd
+```rust
+//tbd
 ```
 
 ### Structs
@@ -121,7 +124,7 @@ struct User {
     };
 ```
 
-* Use init shorthand to assign struct values in functio
+* Use init shorthand to assign struct values in functions
 
 ```rust
 
@@ -138,19 +141,9 @@ fn assign_data (username: String, email: String) -> User {
 
 ```
 
-
-* struct update syntax
-
-```rust
-# take values over from user1 and just change email
-let user2 = User {
-    email: String::from("ok@ok.com"),
-    ..user1
-};
-// but user1 is no longer usable after this email string was moved
-```
-
 * unit like structs can be used when no name of elements is needed
+
+* tuple structs are possible
 
 ```rust
 struct Color (i32,i32,i32);
@@ -162,7 +155,7 @@ fn main(){
 }
 ```
 
-#### Methods 
+### Methods in Structs
 
 * Within struct methods can be implemented
 
@@ -181,7 +174,6 @@ impl Car{
 
 
 ```
-
 
 
 ## Control Statements
@@ -259,22 +251,21 @@ A reference is like a pointer in that it’s an address we can follow to access 
 * to modify a reference it has to be mutable
 
 ```rust
-#create mutable variable
+// create mutable variable
 
 let mut a = 5;
 
-# define function accepting mutable variables
+// define function accepting mutable variables
 
 fn func_xyz(x: &mut i32) {
     ...}
 
-#pass reference to function
+// pass reference to function
 
 func_xyz(&a);
 
+//reuse that variable later
+
+a += 1;
+
 ```
-
-### Slices
-
-* string slice is a reference to a part of a string `let str = &s[starting_index..ending_index];`
-* type for string slice: `&str`

@@ -1,19 +1,50 @@
+#![allow(dead_code, unused_labels)]
+
 fn main() {
-    println!("Hello, world!");
+    //println!("Hello, world!");
 
-    let resp: bool = if_func(30);
+   // let resp: bool = if_func(30);
 
-    println!("Res is {resp}");
+    //println!("Res is {resp}");
 
-    let out: i32 = doing_loop();
+   // let out: i32 = doing_loop();
 
-    println!("{out}");
+   // println!("{out}");
 
-    doing_while();
-    doing_for();
-    using_range();
+   // doing_while();
+   // doing_for();
+   // using_range();
 
-    anonymous_loop(11);
+   // anonymous_loop(11);
+
+//always need to initialize array first
+    let mut sample_arr: [i32; 10] = [0;10];
+    
+    fill_arr(&mut sample_arr);
+
+    print_arr(&sample_arr);
+}
+
+fn fill_arr (arr: &mut [i32]) {
+
+    //even if array is passed like mutable reference it can still be accessed normally
+    //unlike C...
+    
+    arr[0] = 1;
+
+    for i in 1..arr.len(){
+        arr[i] = arr[i-1] + 1; 
+    }
+}
+
+//passing array as a reference to a function
+fn print_arr (arr: &[i32]){
+
+    for item in arr{
+        println!("{item}");
+    }
+
+
 }
 
 fn anonymous_loop (max_iter: i32) {
