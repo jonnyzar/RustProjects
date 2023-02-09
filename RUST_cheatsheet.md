@@ -102,7 +102,15 @@ Array signature is fixed `[T; length]`: `T` is type of each element, `length` is
 Like array but may grow and shrink in size
 
 ```rust
-//tbd
+let mut numbers = Vec::new();
+
+numbers.push(1);
+numbers.push(2);
+numbers.push(3);
+
+for number in numbers {
+    println!("{}", number);
+}
 ```
 
 ### Structs
