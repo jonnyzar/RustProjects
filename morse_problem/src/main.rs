@@ -9,7 +9,9 @@ fn main() {
         - if less that two dots in the morse string then output empty list
     */
 
-    let sample_input: String = ".--...-.".to_string();
+    let sample_input: String = String::from(".--...-.");
+
+    println!("Original {}", sample_input);
 
 
     //test_string(&sample_input);
@@ -25,7 +27,7 @@ fn test_string (s: &str){
     println!("{}", s);
 }
 
-fn test_char_vec (t: Vec<char>){
+fn test_char_vec (t: &Vec<char>){
     
     for c in t { 
         print!("{}", c);
@@ -49,15 +51,22 @@ fn combine_morse (in_morse: &str){
     // refactor the input string to a Vec<char>
     let mut orig_str_vec: Vec<char> = refactor_str(in_morse);
 
-    find_pattern(&mut orig_str_vec);
+    //create vector to store possible combinations 
+    let mut options: Vec<Vec<char>> = Vec::new();
 
-    //while pat_detected is true continue
-/*
-    while pat_detected {
+      // find dot positions
+    let dots_collection: Vec<usize> = get_dots_num(&orig_str_vec);
 
-            
+    //while dots available
+    for dot in &dots_collection {
+
+        //prepare input string for analysis with previous dots replaced
+        let dot_string = &orig_str_vec;
+
+        find_pattern(&dot_string);
+      
     }
-*/
+
 
 
     //add combination
@@ -73,14 +82,11 @@ fn combine_morse (in_morse: &str){
     */
 }
 
-fn find_pattern (in_str: &Vec<char>) {
+fn find_pattern (in_str: &Vec<char>) -> Vec<char> {
     //takes input string and outputs vector with the options for the detected dot
 
-    //possible option
+    //mutable vector copy for later input of possible option
     let mut option = in_str.clone();
-
-    //create vector to store possible combinations 
-    let mut options: Vec<Vec<char>> = Vec::new();
 
     //track detection of first and second dots
     let mut dot_detected: bool = false;
@@ -102,11 +108,44 @@ fn find_pattern (in_str: &Vec<char>) {
             else if (*c == '.') && dot_detected {
                 println!("found pattern at {} and {}", found_i, i);
                 option[i] = '-';
-                //options.push(in_str);
                 break;
             }
 
 
 
         }
+
+    test_char_vec(&option);
+
+    return option;
+
 }
+
+fn get_dots_num(in_str: &Vec<char>) -> Vec<usize> {
+    /*
+    Get amount of dots from the code to determine amount of iteration
+    AND
+    their indexes
+    */
+
+    let mut num_dots: Vec<usize> = Vec::new();
+
+    for (i, c) in in_str.iter().enumerate(){
+        // println!("index {} char {}", i, c);
+
+        if *c == '.' {
+            num_dots.push(i);
+        }
+
+    }
+
+    /*
+    for item in &num_dots {
+        print!(" {} ", item);
+    }
+    */
+
+    return num_dots;
+
+}
+
