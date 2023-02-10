@@ -47,9 +47,9 @@ fn refactor_str (s: &str) -> Vec<char>{
 fn combine_morse (in_morse: &str){
 
     // refactor the input string to a Vec<char>
-    let orig_str_vec: Vec<char> = refactor_str(in_morse);
+    let mut orig_str_vec: Vec<char> = refactor_str(in_morse);
 
-    find_pattern(orig_str_vec);
+    find_pattern(&mut orig_str_vec);
 
     //while pat_detected is true continue
 /*
@@ -73,9 +73,10 @@ fn combine_morse (in_morse: &str){
     */
 }
 
-fn find_pattern (in_str: Vec<char>) {
+fn find_pattern (in_str: &Vec<char>) {
     //takes input string and outputs vector with the options for the detected dot
 
+    //possible option
     let mut option = in_str.clone();
 
     //create vector to store possible combinations 
@@ -88,7 +89,7 @@ fn find_pattern (in_str: Vec<char>) {
     let mut found_i: usize = 0;
 
     //iterate through the copy
-    for (i, c) in option.iter().enumerate(){
+    for (i, c) in in_str.iter().enumerate(){
         // println!("index {} char {}", i, c);
 
             if (*c == '.') && !(dot_detected) {
@@ -101,7 +102,7 @@ fn find_pattern (in_str: Vec<char>) {
             else if (*c == '.') && dot_detected {
                 println!("found pattern at {} and {}", found_i, i);
                 option[i] = '-';
-                options.push(option);
+                //options.push(in_str);
                 break;
             }
 
