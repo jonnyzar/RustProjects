@@ -49,25 +49,63 @@ fn combine_morse (in_morse: &str){
     // refactor the input string to a Vec<char>
     let orig_str_vec: Vec<char> = refactor_str(in_morse);
 
-    // created copy to later alter it as morse code changes
-    let mut copy_orig: Vec<char> = orig_str_vec.clone();
+    find_pattern(orig_str_vec);
+
+    //while pat_detected is true continue
+/*
+    while pat_detected {
+
+            
+    }
+*/
+
+
+    //add combination
+    //options.push(copy_orig);
+
+    //options.push(in_morse);
+    //options.push(String::from("Hello"));
+
+    /*
+    for code in options {
+        test_char_vec(code);
+    }
+    */
+}
+
+fn find_pattern (in_str: Vec<char>) {
+    //takes input string and outputs vector with the options for the detected dot
+
+    let mut option = in_str.clone();
 
     //create vector to store possible combinations 
     let mut options: Vec<Vec<char>> = Vec::new();
 
     //track detection of first and second dots
-    let mut det_dot: bool = false;
+    let mut dot_detected: bool = false;
 
-    //add combination
-    options.push(copy_orig);
+    //index of finding
+    let mut found_i: usize = 0;
 
-    //options.push(in_morse);
-    //options.push(String::from("Hello"));
+    //iterate through the copy
+    for (i, c) in option.iter().enumerate(){
+        // println!("index {} char {}", i, c);
 
-    
-    for code in options {
-        test_char_vec(code);
-    }
-    
+            if (*c == '.') && !(dot_detected) {
+                //first ever dot in the morse sequence
+                println!("found '{}' at {}", c, i);
+                found_i = i;
+                option[i] = '-'; 
+                dot_detected = true;
+            }
+            else if (*c == '.') && dot_detected {
+                println!("found pattern at {} and {}", found_i, i);
+                option[i] = '-';
+                options.push(option);
+                break;
+            }
+
+
+
+        }
 }
-
