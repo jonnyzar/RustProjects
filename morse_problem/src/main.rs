@@ -65,6 +65,9 @@ fn combine_morse (in_morse: &str){
 
     //cloning original vector into the one that should be mutated over time
     let mut new_str_vec = orig_str_vec.clone();
+
+//#### NOW NEEED TO IMPLEMENT IT FOR ITRATING THROUGH ALL DOTS
+
 /*
     //while dots available
     for dot in dots_collection {
