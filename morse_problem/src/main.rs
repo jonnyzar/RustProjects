@@ -52,26 +52,30 @@ fn combine_morse (in_morse: &str){
     */
 
     // refactor the input string to a Vec<char>
-    let mut orig_str_vec: Vec<char> = refactor_str(in_morse);
+    let orig_str_vec: Vec<char> = refactor_str(in_morse);
 
-    //create vector to store possible combinations 
+    //create vector to store possible combinations of morse code replacements
     let mut options: Vec<Vec<char>> = Vec::new();
 
       // find dot positions
     let dots_collection: Vec<usize> = get_dots_num(&orig_str_vec);
 
+
+    find_pattern(&orig_str_vec);
+
+    //cloning original vector into the one that should be mutated over time
+    let mut new_str_vec = orig_str_vec.clone();
+
     //while dots available
-    // use iter_mut
-    for dot in &dots_collection {
+    for dot in dots_collection {
 
-        //prepare input string for analysis with previous dots replaced
-        let mut dot_string = &orig_str_vec;
-        &dot_string[dot] = 'x';
+        //replacing one dot with x to remove it out of scope for pattern detection
+        //except for the first dot
+        new_str_vec[dot] = 'x';
 
-        find_pattern(&dot_string);
+        find_pattern(&new_str_vec);
       
     }
-
 
 
     //add combination
@@ -105,7 +109,6 @@ fn find_pattern (in_str: &Vec<char>) -> Vec<char> {
 
             if (*c == '.') && !(dot_detected) {
                 //first ever dot in the morse sequence
-                println!("found '{}' at {}", c, i);
                 found_i = i;
                 option[i] = '-'; 
                 dot_detected = true;
