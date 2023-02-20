@@ -47,6 +47,9 @@ fn refactor_str (s: &str) -> Vec<char>{
 }
 
 fn combine_morse (in_morse: &str){
+    /*
+    Here all possible combinations of dots and dashes are calculated
+    */
 
     // refactor the input string to a Vec<char>
     let mut orig_str_vec: Vec<char> = refactor_str(in_morse);
@@ -58,10 +61,12 @@ fn combine_morse (in_morse: &str){
     let dots_collection: Vec<usize> = get_dots_num(&orig_str_vec);
 
     //while dots available
+    // use iter_mut
     for dot in &dots_collection {
 
         //prepare input string for analysis with previous dots replaced
-        let dot_string = &orig_str_vec;
+        let mut dot_string = &orig_str_vec;
+        &dot_string[dot] = 'x';
 
         find_pattern(&dot_string);
       
