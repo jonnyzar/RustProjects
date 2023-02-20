@@ -65,7 +65,7 @@ fn combine_morse (in_morse: &str){
 
     //cloning original vector into the one that should be mutated over time
     let mut new_str_vec = orig_str_vec.clone();
-
+/*
     //while dots available
     for dot in dots_collection {
 
@@ -76,7 +76,7 @@ fn combine_morse (in_morse: &str){
         find_pattern(&new_str_vec);
       
     }
-
+*/
 
     //add combination
     //options.push(copy_orig);
@@ -91,11 +91,12 @@ fn combine_morse (in_morse: &str){
     */
 }
 
-fn find_pattern (in_str: &Vec<char>) -> Vec<char> {
-    //takes input string and outputs vector with the options for the detected dot
+fn find_pattern (in_str: &Vec<char>) -> Vec<Vec<char>> {
+    //takes input string fro a single given dot
+    //and outputs vector with the options for this dot
 
-    //mutable vector copy for later input of possible option
-    let mut option = in_str.clone();
+    //ooptions for one dot
+    let mut options_4dot: Vec<Vec<char>> = Vec::new();
 
     //track detection of first and second dots
     let mut dot_detected: bool = false;
@@ -110,22 +111,31 @@ fn find_pattern (in_str: &Vec<char>) -> Vec<char> {
             if (*c == '.') && !(dot_detected) {
                 //first ever dot in the morse sequence
                 found_i = i;
-                option[i] = '-'; 
                 dot_detected = true;
             }
             else if (*c == '.') && dot_detected {
                 println!("found pattern at {} and {}", found_i, i);
-                option[i] = '-';
-                break;
+
+                //temporary option string filled with '-'
+                let mut option:Vec<char> = vec!['-'; in_str.len()];
+            
+                //place relevant dots within option
+                option[found_i] = '.';
+                option[i] = '.';
+
+                //add option string to options collection for the current dot
+                options_4dot.push(option);    
             }
-
-
-
         }
 
-    test_char_vec(&option);
+    println!("All options for current dot\n");
 
-    return option;
+    for opt in &options_4dot{
+        test_char_vec(&opt);
+        println!("\n");
+    }
+
+    return options_4dot;
 
 }
 
@@ -149,6 +159,7 @@ fn get_dots_num(in_str: &Vec<char>) -> Vec<usize> {
 
     /*
     for item in &num_dots {
+
         print!(" {} ", item);
     }
     */
