@@ -13,13 +13,19 @@ fn main() {
 
     println!("Original {}", sample_input);
 
+    //get_options(&sample_input);
 
-    //test_string(&sample_input);
+}
 
-    //split_str(&sample_input);
+fn generate_morse(L: i32) -> Vec<char> {
+    /*
+    This should generate a random combination of dots and dashes of a given length L
+    */
 
-    //This creates a new String value that is separate from the original
-    combine_morse(&sample_input);
+    let dot = '.';
+    let dash = '-';
+
+    let v = vec!['-'; L];
 
 }
 
@@ -46,55 +52,40 @@ fn refactor_str (s: &str) -> Vec<char>{
     return  output_vec
 }
 
-fn combine_morse (in_morse: &str){
+fn get_options (orig_str_vec: &Vec<char>){
     /*
     Here all possible combinations of dots and dashes are calculated
+    And total number of resulting options is returned
     */
 
     // refactor the input string to a Vec<char>
-    let orig_str_vec: Vec<char> = refactor_str(in_morse);
-
-    //create vector to store possible combinations of morse code replacements
-    let mut options: Vec<Vec<char>> = Vec::new();
+    //let orig_str_vec: Vec<char> = refactor_str(in_morse);
 
       // find dot positions
     let dots_collection: Vec<usize> = get_dots_num(&orig_str_vec);
 
-
-    find_pattern(&orig_str_vec);
+    //find_pattern(&orig_str_vec, );
 
     //cloning original vector into the one that should be mutated over time
     let mut new_str_vec = orig_str_vec.clone();
 
-//#### NOW NEEED TO IMPLEMENT IT FOR ITRATING THROUGH ALL DOTS
+    let mut total_options = 0;
 
-/*
     //while dots available
     for dot in dots_collection {
 
-        //replacing one dot with x to remove it out of scope for pattern detection
-        //except for the first dot
-        new_str_vec[dot] = 'x';
-
-        find_pattern(&new_str_vec);
-      
+        //finding options for current dot pattern
+        total_options += find_pattern(&new_str_vec, &dot);
+        
+        //replacing the first dot within current pattern with a dash to exclude it
+        new_str_vec[dot] = '-';
     }
-*/
 
-    //add combination
-    //options.push(copy_orig);
+    println!("The total number of options equals {total_options}");
 
-    //options.push(in_morse);
-    //options.push(String::from("Hello"));
-
-    /*
-    for code in options {
-        test_char_vec(code);
-    }
-    */
 }
 
-fn find_pattern (in_str: &Vec<char>) -> Vec<Vec<char>> {
+fn find_pattern (in_str: &Vec<char>, current_dot: &usize) -> usize {
     //takes input string fro a single given dot
     //and outputs vector with the options for this dot
 
@@ -117,7 +108,7 @@ fn find_pattern (in_str: &Vec<char>) -> Vec<Vec<char>> {
                 dot_detected = true;
             }
             else if (*c == '.') && dot_detected {
-                println!("found pattern at {} and {}", found_i, i);
+                //println!("found pattern at {} and {}", found_i, i);
 
                 //temporary option string filled with '-'
                 let mut option:Vec<char> = vec!['-'; in_str.len()];
@@ -131,14 +122,19 @@ fn find_pattern (in_str: &Vec<char>) -> Vec<Vec<char>> {
             }
         }
 
-    println!("All options for current dot\n");
+    let num_options = options_4dot.len();
 
-    for opt in &options_4dot{
-        test_char_vec(&opt);
-        println!("\n");
+    if num_options > 0 {
+        println!("There are a total of options {num_options} for dot {current_dot}");
+
+        for opt in &options_4dot{
+            test_char_vec(&opt);
+            println!("\n");
+        }
+
     }
 
-    return options_4dot;
+    return num_options;
 
 }
 
@@ -160,14 +156,6 @@ fn get_dots_num(in_str: &Vec<char>) -> Vec<usize> {
 
     }
 
-    /*
-    for item in &num_dots {
-
-        print!(" {} ", item);
-    }
-    */
-
     return num_dots;
-
 }
 
