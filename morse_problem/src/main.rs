@@ -9,6 +9,7 @@ fn main() {
         - if less that two dots in the morse string then output empty list
     */
 
+    //generate some random number within a boundary
     let length: usize = rand::thread_rng().gen_range(5, 150);
 
     let sample_input = generate_morse(length);
@@ -59,10 +60,7 @@ fn get_options (orig_str_vec: &Vec<char>){
     And total number of resulting options is returned
     */
 
-    // refactor the input string to a Vec<char>
-    //let orig_str_vec: Vec<char> = refactor_str(in_morse);
-
-      // find dot positions
+    // find dot positions
     let dots_collection: Vec<usize> = get_dots_num(&orig_str_vec);
 
     //find_pattern(&orig_str_vec, );
