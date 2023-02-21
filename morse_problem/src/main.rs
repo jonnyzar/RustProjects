@@ -1,4 +1,4 @@
-#![allow(dead_code)]
+use rand::prelude::*;
 
 fn main() {
 
@@ -9,31 +9,42 @@ fn main() {
         - if less that two dots in the morse string then output empty list
     */
 
-    let sample_input: String = String::from(".--...-.");
+    let length: usize = rand::thread_rng().gen_range(5, 150);
 
-    println!("Original {}", sample_input);
+    let sample_input = generate_morse(length);
 
-    //get_options(&sample_input);
+    get_options(&sample_input);
 
 }
 
-fn generate_morse(L: i32) -> Vec<char> {
+fn generate_morse (needed_length: usize) -> Vec<char> {
     /*
-    This should generate a random combination of dots and dashes of a given length L
+    This should generate a random combination of dots and dashes of a given length
     */
 
-    let dot = '.';
-    let dash = '-';
+    let mut generated_vector = vec!['-'; needed_length];
 
-    let v = vec!['-'; L];
+    for i in 0..needed_length {
+
+        if rand::random(){//boolean random generation
+
+            generated_vector[i] = '.';
+
+        }
+
+    }
+
+
+    test_char_vec(&generated_vector);
+
+    return generated_vector;
 
 }
 
-fn test_string (s: &str){
-    println!("{}", s);
-}
 
 fn test_char_vec (t: &Vec<char>){
+
+    print!("Generated morse code is ");
     
     for c in t { 
         print!("{}", c);
@@ -41,16 +52,6 @@ fn test_char_vec (t: &Vec<char>){
     
 }
 
-fn refactor_str (s: &str) -> Vec<char>{
-    
-    let mut output_vec: Vec<char> = Vec::new();
-    
-    for c in s.chars(){
-        output_vec.push(c);
-    }
-
-    return  output_vec
-}
 
 fn get_options (orig_str_vec: &Vec<char>){
     /*
@@ -125,7 +126,7 @@ fn find_pattern (in_str: &Vec<char>, current_dot: &usize) -> usize {
     let num_options = options_4dot.len();
 
     if num_options > 0 {
-        println!("There are a total of options {num_options} for dot {current_dot}");
+        println!("\n {num_options} options for dot {current_dot}");
 
         for opt in &options_4dot{
             test_char_vec(&opt);
