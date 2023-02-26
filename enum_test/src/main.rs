@@ -2,7 +2,7 @@
 use std::fmt;
 
 
-enum WebEvent {
+enum WebEventControl {
 //enum WebEvent can be only one of the variables defined below but not All at the Same Time!
     PageLoad,
     PageUnload,
@@ -22,42 +22,22 @@ enum InAddress{
 }
 
 
-enum Car{
-    Start,
-    Stop,
-    Move {x: i32, y: i32},
-    Type (String),
-    Color (i32, i32, i32),
-}
-
-impl Car {
-    fn drive(&self) {
-        //define method
-    
-    }
-}
-
+type web = WebEventControl;
 
 
 fn main() {
 
+    let press = web::Keypress('a', true);
+    let load_pg = web::PageLoad;
+    let unload_pg = web::PageUnload;
 
+}
 
-    
+fn define_intf () {
 
     let localhost = InAddress::V4("127.0.0.0".to_string());
-
-    //let four = IpAddrKind::V4;
-    //let four1 = IpAddrKind::V4;
-    //let six = IpAddrKind::V6;
 
     let home = IpAddrKind::V4(127,0,0,1);
     let loopback = IpAddrKind::V6(String::from("::1"));
 
-
-
-    let c = Car::Type(String::from("Jaguar"));
-    let m = Car::Move{ x:15, y:19};
-    c.drive();
 }
-
